@@ -5,6 +5,7 @@ import com.mathieuaime.hhf.core.happyhour.controller.HappyHourController
 import com.mathieuaime.hhf.core.happyhour.service.HappyHourService
 import io.restassured.module.mockmvc.RestAssuredMockMvc
 import org.junit.jupiter.api.BeforeEach
+import java.util.*
 
 abstract class HappyHourTestBase {
     private val happyHourController = HappyHourController(happyHourService())
@@ -22,6 +23,8 @@ abstract class HappyHourTestBase {
         return object : HappyHourService {
             override fun findByBarUuid(uuid: String): List<HappyHour> = happyHours.filter { it.barUuid == uuid }
 
+            override fun findByUuidAndBarUuid(uuid: String, barUuid: String): Optional<HappyHour> =
+                    Optional.ofNullable(happyHours.find { it.uuid == uuid && it.barUuid == barUuid })
         }
     }
 }
