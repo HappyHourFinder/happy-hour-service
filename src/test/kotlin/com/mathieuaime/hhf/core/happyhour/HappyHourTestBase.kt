@@ -21,10 +21,14 @@ abstract class HappyHourTestBase {
         val happyHours = listOf(fakeHappyHour, fakeHappyHour2)
 
         return object : HappyHourService {
-            override fun findByBarUuid(uuid: String): List<HappyHour> = happyHours.filter { it.barUuid == uuid }
+            override fun findByBarUuid(uuid: String): List<HappyHour> =
+                    happyHours.filter { it.barUuid == uuid }
 
-            override fun findByUuidAndBarUuid(uuid: String, barUuid: String): Optional<HappyHour> =
-                    Optional.ofNullable(happyHours.find { it.uuid == uuid && it.barUuid == barUuid })
+            override fun save(happyHour: HappyHour): HappyHour =
+                    HappyHour(happyHour.uuid ?: UUID.randomUUID().toString(),
+                            happyHour.begin, happyHour.end, happyHour.barUuid)
+
+            override fun delete(uuid: String) {}
         }
     }
 }

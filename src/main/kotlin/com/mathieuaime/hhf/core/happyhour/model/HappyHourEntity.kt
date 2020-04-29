@@ -12,9 +12,9 @@ data class HappyHourEntity(
         @GeneratedValue
         val uuid: String,
         @Column(nullable = false)
-        val begin: LocalTime,
+        val beginTime: LocalTime,
         @Column(nullable = false)
-        val end: LocalTime,
+        val endTime: LocalTime,
         @Column(nullable = false)
         val barUuid: String
 )

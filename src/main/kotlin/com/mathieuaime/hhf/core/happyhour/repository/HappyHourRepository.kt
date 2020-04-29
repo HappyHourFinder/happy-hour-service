@@ -8,6 +8,4 @@ import java.util.*
 @Repository
 interface HappyHourRepository : JpaRepository<HappyHourEntity, String> {
     fun findByBarUuid(uuid: String): List<HappyHourEntity>
-
-    fun findByUuidAndBarUuid(uuid: String, barUuid: String): Optional<HappyHourEntity>
 }
